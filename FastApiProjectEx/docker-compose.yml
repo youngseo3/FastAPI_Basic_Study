@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  fastapi-app:
+    build: .
+    ports:
+      - "80:80"
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    # 환경 변수 사용
+
+  postgres:
+    image: postgres
+    env_file:
+      - .env
+    # 환경 변수 사용
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
